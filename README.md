@@ -1,17 +1,17 @@
 # SQL-Air-Cargo-Analysis
 
-Identifying regular customers for targeted offers, analyzing the busiest routes to optimize aircraft allocation, and preparing detailed ticket sales reports. This will help Air Cargo improve the customer experience and operational efficiency, making it a preferred choice for air travel.
+Identifying regular customers for targeted offers, analysing the busiest routes to optimise aircraft allocation, and preparing detailed ticket sales reports. This will help Air Cargo improve the customer experience and operational efficiency, making it a preferred choice for air travel.
 
 ## Input Dataset
 
-## Customer: Contains the information of customers
+### Customer: Contains the information of customers
 ● customer_id – ID of the customer
 ● first_name – First name of the customer
 ● last_name – Last name of the customer
 ● date_of_birth – Date of birth of the customer
 ● gender – Gender of the customer
 
-## passengers_on_flights: Contains information about the travel details
+### passengers_on_flights: Contains information about the travel details
 ● aircraft_id – ID of each aircraft in a brand
 ● route_id – Route ID of the from and to location
 ● customer_id – ID of the customer
@@ -22,7 +22,7 @@ Identifying regular customers for targeted offers, analyzing the busiest routes 
 ● travel_date – Travel date of each passenger
 ● flight_num – Specific flight number for each route
 
-## ticket_details: Contains information about the ticket details
+### ticket_details: Contains information about the ticket details
 ● p_date – Ticket purchase date
 ● customer_id – ID of the customer
 ● aircraft_id – ID of each aircraft in a brand
@@ -32,7 +32,7 @@ Identifying regular customers for targeted offers, analyzing the busiest routes 
 ● price_per_ticket – Price of a ticket
 ● brand – Aviation service provider for each aircraft
 
-## routes: Contains information about the route details
+### routes: Contains information about the route details
 ● Route_id – Route ID of from and to location
 ● Flight_num – Specific fight number for each route
 ● Origin_airport – Departure location
