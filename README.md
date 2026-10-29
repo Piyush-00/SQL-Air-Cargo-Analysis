@@ -1,41 +1,85 @@
-# SQL-Air-Cargo-Analysis
+# Air Cargo Customer & Route Analysis in SQL
 
-Identifying regular customers for targeted offers, analysing the busiest routes to optimise aircraft allocation, and preparing detailed ticket sales reports. This will help Air Cargo improve the customer experience and operational efficiency, making it a preferred choice for air travel.
+A MySQL project for an airline that wants to find its best customers for targeted offers, understand its routes for better aircraft planning, and produce ticket sales reports.
 
-## Input Dataset
+**Tools:** MySQL
 
-### Customer: Contains the information of customers
-● customer_id – ID of the customer
-● first_name – First name of the customer
-● last_name – Last name of the customer
-● date_of_birth – Date of birth of the customer
-● gender – Gender of the customer
+## Business question
 
-### passengers_on_flights: Contains information about the travel details
-● aircraft_id – ID of each aircraft in a brand
-● route_id – Route ID of the from and to location
-● customer_id – ID of the customer
-● depart – Departure place from the airport
-● arrival – Arrival place in the airport
-● seat_num – Unique seat number for each passenger
-● class_id – ID of the travel class
-● travel_date – Travel date of each passenger
-● flight_num – Specific flight number for each route
+Which customers are worth targeting with offers, which routes and classes drive revenue, and how can routine reports be made fast and repeatable?
 
-### ticket_details: Contains information about the ticket details
-● p_date – Ticket purchase date
-● customer_id – ID of the customer
-● aircraft_id – ID of each aircraft in a brand
-● class_id – ID of travel class
-● no_of_tickets – Number of tickets purchased
-● a_code – Code of each airport
-● price_per_ticket – Price of a ticket
-● brand – Aviation service provider for each aircraft
+## What the queries answer
 
-### routes: Contains information about the route details
-● Route_id – Route ID of from and to location
-● Flight_num – Specific fight number for each route
-● Origin_airport – Departure location
-● Destination_airport – Arrival location
-● Aircraft_id – ID of each aircraft in a brand
-● Distance_miles – Distance between departure and arrival location
+| Business question | SQL technique |
+|---|---|
+| Which customers have booked, and which booked with a specific airline brand? | `INNER JOIN` between customers and tickets |
+| How many business-class bookings are there, and what revenue do they bring in? | Aggregation with `SUM` / `COUNT` |
+| Which customers travel Economy Plus? | Subquery |
+| Has total revenue crossed the 10,000 target? | `IF` with an aggregate |
+| What is the highest ticket price for each brand? | Window function `MAX() OVER (PARTITION BY brand)` |
+| How much has each customer spent, with a grand total? | `GROUP BY ... WITH ROLLUP` |
+| What is the average distance and number of passengers per aircraft on routes flown more than once? | Common table expressions (CTEs) + joins |
+| Which routes are longer than 2,000 miles? | Stored procedure |
+| A reusable list of business-class customers by brand | View |
+| How can route lookups run faster? | Index + `EXPLAIN` execution plan |
+| How is a new analyst given database access? | `CREATE USER` / `GRANT` |
+
+## Business value
+
+- **Targeted offers:** customer-level spend totals and class/brand filters identify high-value travellers to receive promotions.
+- **Aircraft planning:** route distance and passengers-per-aircraft help match aircraft to demand.
+- **Faster reporting:** views, stored procedures and indexes turn one-off queries into repeatable reports.
+
+## Files
+
+The queries are in [`Air-Cargo_Analysis.sql`](https://github.com/Piyush-00/SQL-Employee-Performance-Mapping/blob/main/Air-Cargo_Analysis.sql). The source data is not included in this repo.
+
+<details>
+<summary>Data dictionary</summary>
+
+**customer:** customer details
+
+| Column | Description |
+|---|---|
+| customer_id | Customer ID |
+| first_name, last_name | Customer name |
+| date_of_birth | Date of birth |
+| gender | Gender |
+
+**passengers_on_flights:** each passenger's trip
+
+| Column | Description |
+|---|---|
+| aircraft_id | Aircraft ID |
+| route_id | Route ID |
+| customer_id | Customer ID |
+| depart, arrival | Departure and arrival airports |
+| seat_num | Seat number |
+| class_id | Travel class |
+| travel_date | Date of travel |
+| flight_num | Flight number |
+
+**ticket_details:** ticket purchases
+
+| Column | Description |
+|---|---|
+| p_date | Purchase date |
+| customer_id | Customer ID |
+| aircraft_id | Aircraft ID |
+| class_id | Travel class |
+| no_of_tickets | Tickets purchased |
+| a_code | Airport code |
+| price_per_ticket | Price per ticket |
+| brand | Airline brand |
+
+**routes:** route details
+
+| Column | Description |
+|---|---|
+| route_id | Route ID |
+| flight_num | Flight number |
+| origin_airport, destination_airport | Start and end airports |
+| aircraft_id | Aircraft ID |
+| distance_miles | Route distance in miles |
+
+</details>
