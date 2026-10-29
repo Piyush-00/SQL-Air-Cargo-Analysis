@@ -13,11 +13,11 @@ Which customers are worth targeting with offers, which routes and classes drive 
 | Business question | SQL technique |
 |---|---|
 | Which customers have booked, and which booked with a specific airline brand? | `INNER JOIN` between customers and tickets |
-| How many business-class bookings are there, and what revenue do they bring in? | Aggregation with `SUM` / `COUNT` |
+| How many business-class passengers are there, and what revenue do they bring in? | Aggregation with `SUM` |
 | Which customers travel Economy Plus? | Subquery |
 | Has total revenue crossed the 10,000 target? | `IF` with an aggregate |
-| What is the highest ticket price for each brand? | Window function `MAX() OVER (PARTITION BY brand)` |
-| How much has each customer spent, with a grand total? | `GROUP BY ... WITH ROLLUP` |
+| What is the highest ticket price in each travel class? | Window function `MAX() OVER (PARTITION BY class_id)` |
+| How much has each customer spent on each aircraft, with customer subtotals and a grand total? | `GROUP BY ... WITH ROLLUP` |
 | What is the average distance and number of passengers per aircraft on routes flown more than once? | Common table expressions (CTEs) + joins |
 | Which routes are longer than 2,000 miles? | Stored procedure |
 | A reusable list of business-class customers by brand | View |
@@ -32,7 +32,11 @@ Which customers are worth targeting with offers, which routes and classes drive 
 
 ## Files
 
-The queries are in [`Air-Cargo_Analysis.sql`](https://github.com/Piyush-00/SQL-Employee-Performance-Mapping/blob/main/Air-Cargo_Analysis.sql). The source data is not included in this repo.
+| File | Contents |
+|---|---|
+| `Air-Cargo_Analysis.sql` | All queries, views, stored procedure and index |
+
+The source data is not included in this repo.
 
 <details>
 <summary>Data dictionary</summary>
